@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    var ary = [4,6,5,3,8,9];
+
+    //第一种 利用apply的传参的特性来处理 ==》Math.max.apply
+  // var res = Math.max.apply(null,ary);//把数组ary里的每一个值拿出来
+    //console.log(res);
+
+
+    //第二种  sort
+   /* ary.sort(function (a,b){return b-a});  //这个返回的是原来的数组 只是排好了的原来的数组
+    var res =ary.shift(); //或  ary[0];
+    console.log(res);*/
+
+
+    //第三种 假设  (在js编程过程中也经常使用)
+   /* debugger;*/
+  /*  var max = ary[0];
+     for(var i=1;i<ary.length;i++){//从第二项开始
+     if(ary[i]>max){//每一项都与max这个数比较 那个大就给max
+     max = ary[i];
+     }
+     }
+     console.log(max);*/
+
+    //第四种   Math.max(8,6,5,3,4,9,7)
+    var ary = [8,6,5,3,4,9,7];
+   // var res = Math.max(ary.join());//Math.max("8,6,5,3,4,9,7")
+   // res = Math.max(eval('8,6,5,3,4,9,7')); // eval  这个是变成了逗号运算了 取最后的一个值了
+    var res = 'Math.max('+ary.join()+')'; // eval先把要执行的代码拼接成字符串然后最后eval
+                                      //变成字符串"Math.max(8,6,5,3,4,9,7)"
+                                      // 然后在eval这样就形成了该得到的东西
+    res = eval(res);
+    console.log(res);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    *   F11 逐行调试   shift+F11
+    *
+    *
+    *   debugger
+    *
+    *
+    *
+    * */
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

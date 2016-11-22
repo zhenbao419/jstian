@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡自执行</title>
+    <style>
+        *{
+           margin: 0;
+           padding: 0;
+        }
+        ul{
+           list-style: none;
+        }
+        li{
+           float: left;
+           padding: 20px;
+           background: red;
+           color: #fff;
+           cursor: pointer;
+        }
+        .clear:after{
+           display: block;
+           content: '';
+           clear: both;
+        }
+        div{
+           display: none;
+           width: 264px;
+           height: 200px;
+           font-size: 50px;
+           text-align: center;
+           line-height: 200px;
+           background: lightcyan;
+           color: #fff;
+        }
+        li.cur{
+           background: lightcyan;
+        }
+        div.cur{
+           display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <ul id="nav" class="clear">
+        <li class="cur">第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+    </ul>
+    <div class="cur">早</div>
+    <div>上</div>
+    <div>好</div>
+
+
+<!--
+
+
+<div>
+    <ul id="nav" class="clear">
+        <li class="cur">第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+    </ul>
+    <div class="cur">早</div>
+    <div>上</div>
+    <div>好</div>
+</div>
+
+
+想要获取div 里面的所有的div的话就 先获取外面的div  然后再是div.tagName这样来获取
+
+
+
+-->
+
+</body>
+</html>
+<script>
+    var oLis = document.getElementsByTagName('li');
+    var oDivs= document.getElementsByTagName('div');
+
+   /* for(var i=0;i<oLis.length;i++){//自定义属性
+        oLis[i].index = i;
+        oLis[i].onclick =function(){
+            for(var j = 0;j<oLis.length;j++){
+                oLis[j].className='';
+                oDivs[j].className='';
+            }
+            this.className='cur';
+            oDivs[this.index].className='cur'
+        }
+    }*/
+
+   for(var i=0;i<oLis.length;i++){//自执行
+       (function(i){
+           oLis[i].onclick = function (){
+               //console.log(i);//点击哪个就是哪个索引0，1,2
+               for(var j=0;j<oLis.length;j++){
+                   oLis[j].className='';
+                   oDivs[j].className='';
+               }
+               oLis[i].className='cur';
+               oDivs[i].className='cur';
+           }
+       })(i)
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

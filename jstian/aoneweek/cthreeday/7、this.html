@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+
+<script>
+    /*
+    *
+    *   this用法：
+    *      1、绑定事件：当事件触发的时刻，绑定函数中的this就是把事件绑定给谁就是谁
+    *                   比如： div1.onclick = function (){this是 div1}
+    *
+    *      2、函数执行的时候函数中的this,就是调用者个函数的主体 ==》函数在执行的时候，就看函数执行时候“.”前面是什么，是谁那么函数中的this就是谁，如果没有“.”，那么函数中（强调一下函数中）的this就是window
+    *      ps：函数中的this只有在执行的阶段才能确定。
+    *      ps：只要this被function包含了，那么this就一定会改变
+    *
+    *      3、自运行函数中的this是window
+    *           ps： 无论这个自运行函数在哪里运行
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+    //1
+    var div1 = document.getElementById('div1');
+    div1.onclick = function (){
+        this;//  这个是 div1
+    };
+
+    //2
+    function fn(){
+        console.log(this);//window
+    }
+    fn(); //这个时候的this是window
+    window.fn(); //这个时候的this是window
+    var obj ={
+        name: 'zhu',
+        fn:fn  //fn和obj.fn 共同引用同一个函数的堆内存地址
+    };
+    obj.fn();//这个时候的函数中的this是obj
+
+    console.log('obj' in window); //true
+    console.log('fn' in window);//true
+
+
+
+
+    //3
+    var count =0;
+    div1.onclick = function (){
+        count++;
+        if(count===5){
+            div1.onclick = null;//这个是移除点击事件
+        }
+
+
+        console.log(this);
+    };
+
+    div1.onclick();//这个是主动触发事件
+
+
+
+
+    //3 自运行函数
+    (function (){
+        console.log(this);//window
+    })();
+
+    var oo ={
+        name:'zhang',
+        fun: (function (){
+            console.log(this);//window;   因为没有return 所以自运行函数返回的是undefined
+        })()
+    }
+    console.log(oo.fun);//undefined
+
+
+
+
+</script>
+

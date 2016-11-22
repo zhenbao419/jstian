@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>定时器自定义属性一级引用数据类型赋值</title>
+</head>
+<body>
+
+<script>
+    /*
+    *
+    *
+    *
+    * */
+
+
+    var  obj = {
+        name:'tianxi',
+         englishName:obj.name//对象在赋值过程中是不可以引用变量名字的
+    }
+    //Cannot read property 属性 'name' of undefined
+    //不能读取undefined的name属性 ==》obj是一个undefined
+    //这个就是我们今天要学的问题
+
+    obj.zhang = 'nan';
+    obj['zhang'] = 'nan';
+    //obj[zhang]='nan'--->这个里面的zhang是变量
+
+
+
+    //自定义属性的应用场景：当一些值没有地方存储了，不妨存在自己的自定义属性上，只要是引用数据类型，就可以添加自定义属性，
+
+    //函数也是引用数据类型，同样也支持添加自定义属性
+    function sum(){}//函数是引用数据类型
+    //往函数sum给个属性怎么给
+    sum.selfProperty = 'haha';
+    console.log( sum.selfProperty ) //'haha'  只要是引用数据类型都可以添加
+
+
+    //定时器
+
+   var timer1 =  window.setTimeout(function(){
+        console.log('zhang'); //   1秒钟之后执行这个语句
+    },1000);
+ /*  `````````` */
+    function fn(){
+        console.log('zhang');
+    }
+    var timer2 = window.setTimeout(fn,1000);
+
+
+    console.log(typeof setTimeout);//  function  定时器本身也是一个函数
+
+    window.clearTimeout(1);//清除的是页面中的第一个定时器，不是吧定时器毁坏了，而是把定时器中要执行的任务取消了
+    timer1 = null;//这时候只适合把timer的值不代表数字1了  和定时器没有关系
+
+    window.setInterval(function(){},1000)
+
+
+
+
+
+
+</script>
+</body>
+</html>

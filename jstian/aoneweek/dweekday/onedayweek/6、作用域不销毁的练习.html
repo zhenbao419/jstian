@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>作用域不销毁的练习</title>
+</head>
+<body>
+<script>
+
+    //第一种不销毁
+    function fn(){
+        var  num = 2;
+        return function (){
+            num += 1;
+            console.log(num);
+        }
+    }
+    var f = fn();//  这是一个地址
+    f();//3
+    f();//4
+
+    var f1 =fn();
+    f1();//3
+    var f1 =f;
+    f1();//5 因为还是原来的f的那个地址
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

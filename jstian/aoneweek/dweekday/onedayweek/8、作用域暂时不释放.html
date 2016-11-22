@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>作用域暂时不释放</title>
+</head>
+<body>
+<script>
+    function fn(){
+        var  num = 0;
+        return function (){
+            num++;
+            console.log(num);
+        }
+    }
+    fn()();// 1   fn第一次执行 不被立刻释放的   这个执行完以后就都释放了
+    fn()();// 1
+
+
+</script>
+
+</body>
+</html>

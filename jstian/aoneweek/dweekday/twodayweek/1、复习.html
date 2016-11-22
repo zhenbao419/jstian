@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var s = 'str';
+    function fn(){
+        console.log(n);
+        console.log(s);
+        n=7;
+        var n=6;
+        console.log(n)
+
+    }
+    fn();
+    console.log(window.n);//undefined   这部分要注意一下
+
+
+
+    //获取一个对象不存在的属性是undefined。
+
+    //window.n   //即使外面没有var过  也不会报错 只是会undefined
+
+
+
+ ///////////////////////////////////////////////////////////////
+
+    console.log(n);//undefined
+    function fn(m){
+        m = 10;
+        total = m +10;
+    }
+/*
+   var f = fn();
+    console.log(f);//这样是因为没有return  所以fn执行的话返回undefined
+*/
+
+
+    console.log(total);//undefined
+    var total = [1,2];//拿到的是地址  total : xxxfff000   后来被改 20
+    var n = total;// n:xxxfff000 [1,2]
+    fn();
+    console.log(n);//[1,2]
+    console.log(total);//20
+
+
+
+
+
+
+
+
+
+
+
+</script>

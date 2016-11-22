@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>特殊情况下的预解释</title>
+</head>
+<body>
+
+<script>
+    //1、变量提升即使等号右面是一个实名函数，那么这个函数名字也不会被提前声明
+
+    console.log(a)//undefined
+   // console.log(b)// b is not defined  b没有 被定义
+    //var a = function b(){}
+    var a = function (){}; //这种叫做函数表达式，这样的函数先声明后用
+    function a(){}
+
+
+    //2、不理会条件
+
+    //console.log(c)//undefined
+    if(1 == 1){
+       var c = 6;
+    }
+
+    //[] === null //false
+    //[] == null //false  Number(null) 为undefined
+    //[] == '' //空数组
+
+    //3、自运行函数的函数名字是不会被预解释的 ==》 一般自运行函数不写名字
+
+    //console.log(haha);// haha is not defined
+    (function haha(){//所以这个自运行函数中的名字可以不写  haha去掉
+
+    })();
+
+
+
+
+    //4、 return后面的函数是不会被预解释的。下面的函数是可以被预解释的。
+    //   如果return后面的是一个函数的执行（只运行函数，实名函数执行），那么要等着这个函数执行结束后把执行结果留给return
+
+    //console.log(xx);// xx is not defined
+    console.log(fn);//大函数
+    function fn(camera){//形参 函数的入口
+
+       // console.log(xx);//xx is not defined
+        return function xx(){//return 后面的函数即使有名字也没用，任然不会被预解释 所以不写名字也行
+
+        };
+
+       // return camera;//return 后面的是 函数的出口  是被留下的东西   不写return的话是undefined
+        console.log(xy);//打印出来的是function xy(){}  这个xy虽然在return下面定义的但是却可以被预解释的
+        function xy(){
+
+        }
+    }
+    fn();
+
+    var res = fn();//赋值过程如果等号右面是一个函数的执行，那么也是先执行后赋值。
+    console.log(res);
+
+
+
+    //5 如果函数和变量重名，那么在预解释阶段以最后一个函数为准，代码执行到白能量赋值的哪一行，那么就以这个变量的值为准
+
+
+    foo();//2
+    function foo (){console.log(1)}//foo你让这个干什么它就干什么的意思
+    foo();//2
+    var foo = 5;//当代码执行到这一行以后，foo就不再是函数而是这个5
+   // foo();//foo is not function
+    function foo (){console.log(2)}
+   // foo();//因为上面的报错了 所以这个就不用执行了  即使执行了也是报错的foo is not function
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fn(){
+        console.log(this);
+    }
+    fn.call(document.body);//body
+
+    fn.call.call(document.body);//这个的最后结果是document.body执行   会报错 fn.call.call is not a function
+    // 先分析 fn.call本身是一个函数    fn.call instanceof Function--->true
+    //   fn.call/*自己是一个函数*/.call(document.body) 把call方法中的this改成body   我要把fn.call这个call方法中的this修改成document.body,那么call方法中的this是谁呀？我要把这个this修改成body，修改完this之后还要让这个call方法执行
+    // call方法中的this是谁呢？
+    Function.prototype.call = function (obj){//call方法定义在这
+        //this; -->fn  要fn方法中的this修改成obj形参
+        //this是fn，要把this(这个this是fn)中的this修改成obj
+        this //如果fn1.call   this就是fn1
+             // 如果fn2.call   this就是fn2
+              //如果fn3.call   this就是fn3
+        //接下来就是要把this（就是fn）方法中的this修改成obj
+        this();//这个就是fn执行  this就是代表的fn1 或者 fn2 或者 fn3
+        //call方法中的最后一步是this执行（也就是fn执行）
+
+    };
+    //定义在原型上的方法中的this一般是实例
+    fn.call(obj);
+
+
+
+
+
+    function Human(){}
+    Human.prototype.eat = function (){
+        this;//h1.eat -->h1   h2.eat -->h2
+    }
+    var h1 = new Human();
+    var h2 = new Human();
+    h1.eat();
+    h2.eat()
+
+
+
+
+//例子
+    function f(){
+        console.log(this);
+    }
+    function f1(){
+        console.log(1);
+    }
+    f.call(f1);//f1
+
+    f.call.call(f1);//1  如果是多个call那么是最后括号里面的执行f1();
+    Array.call ;//这个也可以 因为Array是类（实例） 也是个函数
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    var num = 5;
+    var obj = {
+        num : 6,
+        fn : (function (num){
+            this.num = num + 5;
+            num += 2;
+            return function (){
+                this.num += 3;
+                num += 3;
+                console.log(num);
+            }
+        })(num)
+    };
+    var fn = obj.fn;
+    fn();//10
+    obj.fn();//13
+    console.log(window.num,num);//13  13    若是后面的是obj.num 那么值是9
+
+
+    /////////////////////////////////////////////////////////////
+
+
+    function Foo(){
+        this.x = 100;
+    }
+    Foo.prototype.x = 200;
+    Object.prototype.y = 300;
+    Foo.prototype.getX = function (){
+        console.log(this.x + this.y);
+    }
+    var f1 = new Foo();
+    var f2 = new Foo();
+    f1.getX();//400
+    Foo.prototype.getX(); //500
+   // f1.constructor === f2.__proto__.constructor  // true
+   // f1.getX === Foo.prototype.getX  // true  因为是公共的，指的是地址
+   // f1.constructor  // function foo   不要想的太多 不然就会出错
+   //f2.__proto__.constructor  //function foo 只要会画图一切都可以理解
+   //f2.__proto__.__proto__.constructor  // function Object(){}
+
+
+
+
+</script>

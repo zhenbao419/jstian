@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *    先分析
+     *            从预解释开始
+     *                 把函数先合上  然后在开始看   就想到函数与var的关系
+     *                 把上面的分析完之后就开始了下面的
+      *
+      *                 函数每执行一次形成不同的作用域   内存地址不同
+     *
+    *
+    * */
+
+
+
+    function fn(){
+        console.log(fn);//从私有作用域里面找   因为return下面的var是声明的所以
+        return function(){
+            console.log(fn);//undefined
+        }
+        var fn =5;//若是这句话不写的话   下面打印出来的就是一个大函数  一个是return后面的小函数
+    }//即声明有赋值
+    var fn = fn();//只声明  因为上面的函数已经声明过了fn了 所以下面就没必要再var了
+    fn();
+</script>

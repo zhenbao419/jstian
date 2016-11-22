@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>作用域练习题</title>
+</head>
+<body>
+<script>
+
+    function fn (num){
+        return function (i){
+            num+=1;
+            console.log(i+num)
+        }
+    }
+    var f = fn(2);//第一次
+    f(3);//6
+    f(5);//9
+    fn(2)(3);//第二次6
+    var f1= fn(2);//第三次
+    f1(6);//9
+    f1(7);//11
+
+
+/*···········这道题感觉还不错 要特殊记忆一下································*/
+    var num = 10;
+    var name = 'zhang';
+    name = (function (name){
+        name = 'zhufeng'
+        num += 10;//undefined +10   这个等于 NaN
+        var num;
+        console.log(num,name);//NaN（输出的不是一个数） 'zhufeng'//自己要注意要注意没有想到NaN
+    })(name);
+    console.log(num,name);//10 undefined
+
+   /*
+     Number(undefined +10)  ---》 NaN
+
+     Number(NaN)  --》 NaN
+
+     Number(null) --》  0
+   */
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

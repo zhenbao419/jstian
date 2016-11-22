@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+            height:100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+/*
+    var  num =1000;//全局变脸num任何函数都能修改，所以不安全
+    function fn (){
+        num = num + 100;
+    }
+    fn();
+
+
+    (function (){
+        var num = 1000;
+    })()
+*/
+
+
+    /*
+    *     函数在执行的时候就会想成一个私有的作用域。而这个私有作用域内的变量是不受外界干扰的。我们把这种私有作用域保护私有变量不受外界干扰的机制就叫闭包
+    *
+    * */
+
+
+
+
+    (function fn(){//这就是闭包
+        var n=0;
+        document.body.onclick = function (){
+            n++;
+            document.getElementsByTagName('title')[0].innerHTML = n;
+        }
+    })();
+
+
+    //下面的是全局
+    var n=0;
+    document.body.onclick = function (){
+        n++;
+        document.getElementsByTagName('title')[0].innerHTML = n;
+    }
+
+
+
+</script>

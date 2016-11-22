@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  /*  console.log(total);//undefined
+    function sum(){
+        console.log(total);//undefined
+        total +=total;//total = total + total      total  = undefined +undefined  此时total是NAN
+    }
+    sum();
+    console.log(total);//NaN
+    var total =0;
+    console.log(total);//0*/
+
+
+
+
+
+
+    console.log(total);//undefined
+   function sum(){
+   console.log(total);//null
+
+   total +=total;   //total = total +total
+                   //   total = null +null
+                   //  total  = Number(null) + Number(null);
+                   //  total =0;
+   }
+  var total =null;
+   sum();
+   console.log(total);// 0  所以这个为0；
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

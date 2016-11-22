@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    console.log(num);
+    console.log(obj);
+    console.log(sum);
+    //num和obj都是用var关键字声明的，sum是用function关键字声明的函数。使用var声明的打印出来都是undefined 使用function声明能直接打印函数。代码还没有运行到定义的哪一行，然后就已经有值了。我们把这个行为叫做变量提前声明，简称变量提声。我们又叫做预解释
+
+    //var的变量代码执行到这一行的时候才会被赋值，在代码执行之前都是undefined
+    //function 在预解释阶段就已经赋值结束  在执行的时候就直接跳过，不用赋值两遍。
+
+    var num = 12;
+    var obj = {
+        name:'zhu',
+        age: 30,
+        'sex':'girl'
+    }
+    function sum(){
+        console.log(1+2);
+    }
+
+
+    /*
+    *    堆是存值的 栈是运行代码的
+    *    引用数据来兴的赋值过程：
+    *         1、首先开辟一块堆内存地址
+    *         2、把属性名和属性值 或者 函数体内的代码当做字符串存到这个地址中
+    *         3、最后把内存地址返回再赋值给变量（变量在最后才得到这个内存地址，在这之前这个变量的值都是在预解释阶段的undefined =》 在赋值的过程中，是不可以使用undefined的）
+    *
+    *
+    * */
+
+    var obj1 ={
+        name :'hz',
+        age:'22',
+        realAge:obj1.age//在存储属性的过程中是不可以使用变量的
+        // 会报错 Cannot read property 'age' of undefined
+    }
+
+    function substration/*减法*/ (){
+        substration()//这样用也是可以的  在自己本身里面可以调用自己  因为函数在预解释的时候已经被声明和赋值了
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

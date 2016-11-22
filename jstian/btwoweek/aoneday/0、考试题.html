@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>考试</title>
+</head>
+<body>
+<script>
+    /*
+    *   添加  appendChild
+    *        indexBefore//这个没有记住
+    *
+    * */
+
+
+
+   /* var name='china';
+    var age = 5000;
+    ~function(name,age){
+        arguments[0]='zhufeng';
+        age = age || this.age;
+        this.name = name;
+        console.log(name,age); //'zhufeng  5000'
+    }(name)
+    console.log(name,age)//'zhufeng 5000'*/
+
+////////////////////////////////////////////////////
+   /* var i =10;
+    function fn(i){
+        return function(n){
+            console.log( n + (++i));
+        }
+    }
+    var f =fn(i);
+    f(10);//21
+    f(20);//32
+    fn(i)(10);//21
+    fn(20)(20);//41
+*/
+
+    ///////////////////////////////////////////
+
+ /*   var num = 10;
+    var obj ={
+        num:10,
+        fn:(function (num){
+            this.num = num+10;
+            num +=10;
+            return function (){
+                this.num = num +10;
+                num++;
+                console.log(num);
+            }
+        })(num)
+    }
+    var fn = obj.fn;
+    fn();//21
+    obj.fn();//22
+    console.log(num);//30  ///////////这个自己没有看清竟然没有写对
+    console.log(obj.num);//31 ///////////这个自己没有看清竟然没有写对*/
+
+
+
+
+    ////////////////////////////////////////////////////////
+
+
+ /*   function Fn(){
+        this.x=100;
+        this.y = 200;
+    }
+    Fn.prototype.getX = function (){
+        console.log(this.x);
+    }
+    Fn.prototype = {//这个是重新的赋值了  所以这个与上面的那个没有关系了 这时候没有了constructor，
+        getY:function (){
+            console.log(this.y);
+        }
+    };
+    var f = new Fn;
+    console.log(f.getY === Fn.prototype.getY); //true
+    //f.getX(); //报错：  f.getX is not a function
+    f.getY();//200
+    f.__proto__.getY();//undefined//因为公共里面的那个没有定义y是谁
+   // console.log(f.getY);
+   console.log(f.constructor);// function Object
+
+*/
+
+    var ary = [12,23];
+    ~function(ary){
+      ary.length -= 1;//这个是ary.length-1 是数组的末尾项   ayr.length=1  ary[ary.length]= ary[1],  这个是不一样
+        //console.log(ary.length-1);
+        //ary.length=ary.length-1;//这个是ary的长度为1 所以ary现在变成了一个值[12]
+
+        ary=[34];
+        ary.length -=1;
+        alert(ary);//alert会把[]这个强制转化成字符串  弹出的是什么都没有
+    }(ary);
+    alert(ary);//[12]
+
+
+
+    //任何一个对象都是Object这个类的实例
+    //__proto__:指向自己所属类的原型
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>预解释，作用域和this综合一道题</title>
+</head>
+<body>
+<script>
+    //这道题自己看一下    这个题的思路 需要自己理解一下
+    var num = 10;
+    var obj ={
+        num : 6,
+        fn: (function (num){
+            this.num++;//自运行函数中的this是window ==》window.num++
+            num++;//这个num和上面的this.num 是两回事
+            var num = 4;
+            return function (){//这个匿名函数就是obj.fn==>符合作用域不释放的条件==》这个作用域内有一个私有的num被保存下来了。暂时有个值
+                this.num--;
+                num--;//这个num和上面的this.num-- 是两回事
+                console.log(num);
+            }
+        })(num)
+    };
+    var  fn = obj.fn;// obj.fn就是那个匿名函数（自运行函数的返回值）==》全局变量fn和obj.fn属性共同引用同一个函数的堆内存地址==》
+
+    fn();//3
+    obj.fn();//2
+    console.log(window.num,obj.num);//10 5
+
+
+
+</script>
+</body>
+</html>

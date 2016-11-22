@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>怎么获取div里面的div</title>
+</head>
+<body>
+
+<div id="box" class="div1">
+    <ul id="nav" class="clear">
+        <li class="cur">第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+    </ul>
+    <div class="cur">早</div>
+    <div>上</div>
+    <div>好</div>
+</div>
+
+</body>
+</html>
+<script>
+    var div1 = document.getElementsByClassName('div1')[0];//这部分必须有索引这样就能获取到数组中的那个具体的想要的那个div了
+    console.log(div1);//上面不写索引的话 这样也能获取到[div#box.div1, box: div#box.div1]这是个类数组
+    //写索引的话就是获取的是
+             /*
+             <div id="box" class="div1">
+              <ul id="nav" class="clear">
+              <li class="cur">第一个</li>
+              <li>第二个</li>
+              <li>第三个</li>
+              </ul>
+              <div class="cur">早</div>
+              <div>上</div>
+              <div>好</div>
+              </div>
+             * */
+
+
+   var oDiv = div1.getElementsByTagName('div');
+   console.log(oDiv);//最上面的应该就是要加索引因为这样才能获取的是单个的div
+
+
+
+    var box = document.getElementById('box');
+    var divs = box.getElementsByTagName('div');
+    console.log(divs);
+     //[div.cur,div,div ]  这样就能获取了
+
+</script>

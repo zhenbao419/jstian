@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>暂时不释放</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function fn(){
+        var  num = 100;
+        return function(){
+            console.log(num);
+        }
+    }
+    fn();//这个是return后面的函数  function(){}() 这样的效果
+    fn()();//后面的函数直接执行  这样就是暂时不释放  //100
+
+
+
+
+
+    function fn(num){
+        //var  num = 100;
+        return function(n){
+            console.log(n+num);
+        }
+    }
+    var f1 = fn(10);//这是fn第一次执行，这是第一个私有作用域。由于f1占用那么第一个私有作用域没有被释放   1： num=10；
+    fn(10)(5);  //15    这是fn第二次执行，15   执行完之后就被释放了
+    var f2 = fn(10);// 这是fn的第三次执行   ：num = 10；
+    f1(1);  //11
+    f1(2);  //12
+    f2(3);  //13
+    fn(10)(6); //16
+
+
+
+
+
+    function foo(num){
+        return function (n){
+            console.log(n+num++)
+        }
+    }
+    var f1 = foo(1);
+    var f2 = foo(2);
+    f1(3);//4
+    f2(4);//6
+    foo(5)(6);//11
+
+
+
+
+
+
+
+    var k = 2;
+    console.log( 2 + k++ + ++k + ++k + k++);//18  自己再算一遍
+    console.log(k);//6
+
+
+
+
+
+
+</script>

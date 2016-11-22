@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点赞</title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:500px;
+            height:100px;
+            line-height: 100px;
+            margin:30px auto;
+            border:3px solid #ccc;
+            text-align: center;
+            cursor:pointer;
+            background: darkblue;
+            color: #fff;
+            font-size: 50px;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        今天天很好:&nbsp<span>0</span>
+    </div>
+</body>
+</html>
+<script>
+    // 2 3 4 这几个方法是可以的
+    var div1 = document.getElementById('div1');
+    var count =0;
+    div1.onclick = function (){
+        count++;
+        //console.log(count)  1  2 3
+         //this.childNodes[1].innerHTML=count;
+        //console.log(this.childNodes);//[text, span]  所以索引要为1 才能取到span
+        //this.children[0].innerHTML=count;
+       this.getElementsByTagName('span')[0].innerHTML = count;
+        //console.log(div1.getElementsByTagName('span')[0].innerHTML)
+    };
+
+
+   /*
+     2、  (function (){
+        var count =0;
+        div1.onclick = function (){
+            count++;
+            // this.childNodes[1].innerHTML=count;
+            //console.log(this.childNodes);//[text, span]
+            this.getElementsByTagName('span')[0].innerHTML = count;
+        }
+    })()*/
+
+
+   /*  //3、
+    div1.onclick =  (function (){
+        var count =0;
+         return  function (){
+            count++;
+            div1.getElementsByTagName('span')[0].innerHTML = count;
+        }
+    })();
+*/
+
+
+    // 4、自定义属性(这个当时不知道怎么想， 现在知道了)这个比较重要  要掌握这个方法
+
+    div1.count =0;//自定义属性  给div1添加一个count属性
+    //以前是把这个数字放在全局变量count上了，现在我放在了div1的自定义属性上了，这样除了div1自己，其他是不能修改的，相对安全
+    div1.onclick = (function (){
+        this.count++;
+        this.getElementsByTagName('span')[0].innerHTML = this.count;
+    });
+
+
+
+/*
+
+    //5、这个不好用  最好不要用
+      div1.setAttribute('count',0);//设置到标签内的属性
+      div1.onclick = function (){
+          div1.firstElementChild.innerHTML
+      }
+
+    //6、
+    var span = div1.getElementsByTagName('span')[0];
+    div1.onclick = function (){
+        ++span.innerHTML;//i++ 还有 ++i  有强制类型转化为Number的默认操作
+        // - * /(除)有强制类型转化为Number的默认操作
+    }
+*/
+
+
+
+
+</script>

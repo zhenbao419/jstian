@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    function Human(/*name,weight*/){//这个FE类就是我自己构造的一个类。构造函数    构造函数和类是同一个。
+        var obj ={}; //当做构造函数执行私有变量不会影响实例
+        this.name='hao';
+        this.weight = '22';
+        // return []; //如果当作构造函数（类）执行，那么返回一个引用数类型会破坏实例的默认返回动作
+        this.cry = function (){
+            //哭这个方法不是某一个实例自己的私有属性，这个方法应该是整个人类都应该天生自带的一个属性
+            //如何把这样的公共的方法直接添加给全人类Human，让每个实例（孩子）出生就带着的这个方法
+        }
+    }
+    var res1 =Human();//普通函数执行  这里的this是 window  这个是赋值给window  window.name-->'hao'
+    //当做普通函数执行还是当做构造函数执行都会执行函数体内的代码
+    console.log(res1);//undefined
+   /// new Human();//--》新生一个小孩    这个是自己构造的  这个就是实例
+    // Human instanceof Function --->true
+
+   /* var res2 = new Human();//构造函数执行  //这个是赋值给当前实例的 res2.name --->'hao'
+    console.log(res2);//  Human{}       typeof res2---》    object*/
+
+</script>

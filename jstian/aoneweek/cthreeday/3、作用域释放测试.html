@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1" style="width:100px;height:100px;background: red;"></div>
+<script>
+
+   /* function fn (num){
+        return function(){
+            num++;
+            console.log(num);
+        }
+    }
+    var f = fn(1);//地址1  xxxfff000
+    f();//2
+    f();//3
+
+    var f1 = fn(1);//地址2   xxxfff111
+    f1();//2
+
+    var f2 = fn(1);//地址3   xxxfff222
+    f2();//2
+    f2 = null;//这时候是已经把f2重新赋值了   和上面的 那个没有关系了
+    console.log(f2);//这时候f2为null
+   // f2();//若是上面的已经赋值为null了 那么这时候报错  f2 is not a function*/
+
+
+
+
+
+    /*```````````````````````````````````````````````````````````````*/
+
+    //绑定事件
+    var div1 = document.getElementById('div1');
+    /* div1.onclick = function(){
+     alert('弹的内容');//弹窗
+     confirm();//确认弹窗
+     prompt();//你离开离开的原因
+     };
+     //div1.onclick = getS;
+     div1.onclick = (function(){
+     var num=0;
+     return function (){
+     num++;
+     console.log(num);
+     }
+     })();//先执行后赋值给onclick
+
+     function getS(){
+
+     }*/
+    //其实绑定事件: 只是在dom对象的事件属相上赋值一个函数
+
+    ;(function(num){
+      // var num = 0;
+        div1.onclick = function (){
+            num++;
+            console.log(num);
+        }
+    })(0)
+
+
+
+
+   //作业
+   (function (i){
+       //选项卡  把自定义属性的都删除掉  用这个来执行
+   })(i);
+
+   for(var i=0;i<oLis.length;i++){//自执行
+       (function(i){
+           oLis[i].onclick = function (){
+               //console.log(i);//点击哪个就是哪个索引0，1,2
+               for(var j=0;j<oLis.length;j++){
+                   oLis[j].className='';
+                   oDivs[j].className='';
+               }
+               oLis[i].className='cur';
+               oDivs[i].className='cur';
+           }
+       })(i)
+   }
+
+
+
+</script>
+</body>
+</html>

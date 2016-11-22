@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>预解释 变量提声</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    console.log(num);//undefined
+    console.log(obj);//undefined
+    console.log(sum);// 函数 function sum(){}
+
+    var num = 5;
+
+    var  obj = {
+        name:'zhufeng'
+    };
+
+    function sum(){}
+
+    /*
+    *     预解释（变量提声）：变量提前声明，用var后面的变量会提前声明，然后并不会赋值。，默认先赋值一个undefined，用function后面的函数名字，不仅仅提前声明了，并且把函数名子的值都赋值结束了。带var的变量在代码运行到这一行的时候才会赋值。然而function函数在预解释阶段就已经赋值结束了
+    *
+    * */
+    var  obj = {
+        name:'tianxi',
+        englishName:obj.name//对象在赋值过程中是不可以引用变量名字的
+    }
+    /*
+    *     引用数据类型的赋值过程：
+    *            1：先准备一块堆内存地址（堆内存是用来存值的   栈内存是用来执行的）
+    *            2：把属性名字和属性值存入到这个内存地址中
+    *            3：最后把这个内存地址返回并且赋值
+    *
+    * */
+
+
+    /*````````````````````````````````````````````````````````*/
+    console.log(total);//undefined   若是全局里面没有var total 那么这时候会报错total未定义
+    function sum(num1,num2){
+        //放在形参的位置不仅仅和变量一样声明了，然后还赋值了
+        console.log(total);//undefined
+        console.log(num1,num2);//100,200   若没有传参的话就是两个undefined
+        var num1=0;
+        var num2=0;
+        var total = num1+num2;
+        console.log(total);//300
+    }
+    var total = 0;
+     sum(100,200);
+    console.log(total);//0
+
+
+    /*
+    * 函数的执行过程：
+    *      1、首先开辟一个栈内存（作用域）空间提供给代码作为运行环境
+    *      2、形参赋值
+    *      3、预解释当前函数体内的带var和function的
+    *      4、代码逐行执行
+    *
+    * */
+
+    /*
+    *    私有作用域和全局作用域：函数在执行的时候，就会提供一个栈内存，我们也叫做作用域，而这个作用域是私有的，这个作用域是私有的，这个作用域内的变量或者函数在外部是不能使用的。==》函数每次执行都会形成一个新的私有作用域，并且每次执行的作用域之间没什么关系，是相对独立的。
+    *              全局作用域，就可以简单的理解为没有任何函数包含的，直接放在script标签内的。
+    *
+    *    私有变量和全局变量：私有作用域内的变量就是私有变量，全局变量就是全局作用域内的变量。
+    *
+    *
+    *
+    * */
+
+
+
+
+
+</script>

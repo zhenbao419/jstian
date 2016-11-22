@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>this的用法</title>
+</head>
+<body>
+
+    <div id="div1" style="width: 100px;height:100px;background:red;"></div>
+
+
+
+<script>
+    console.log(this);//window  这个并不是我们研究this的重点，我们管局的this是函数中的this
+    var div1 = document.getElementById('div2');//null
+    console.log(div1);//typeof div1  是‘object’
+    console.log(div1.onclick);//null
+    //一个事件属性没有绑定任何事件的时候  打印出来的是null
+   //下面给绑定点击事件
+    div1['onclick'] = function (){//div1.onclick是一样的
+        console.log(this);//div1
+    }//这个是this的第一种用法
+
+    //1、绑定事件：当事件发生的时候执行绑定的函数。那么这个函数中的this就是把时间绑定给的元素：eg：函数中的this就是div1
+
+
+
+
+
+    //2、函数执行：函数在执行的时候，函数中的this就是调用这个函数的那个对象。其实也就是看函数在执行的时候前面的“.”,"."前面是谁this就是谁。如果没有“.”，那么this就是window
+    //ps: 函数在定义的时候函数中的this是不能确定的，只有在执行的那一刻才能知道函数中的this是谁。
+    //ps: this只要被函数包含过那就指不定是什么了
+    function fn(){
+        console.log(this)
+    }
+    var obj = {
+        name: 'zhang',
+        fn: fn   /*function (){  //这是一个地址
+            console.log(this)
+        }*/
+    }
+    obj.fn();// this ==>obj
+   fn();//this ==>window
+    //任何全局变量都可以看做是window的一个属性
+    window.fn();// this ==>window      这行前面的window是可以省略的
+
+
+
+    //
+    function fn(){
+        console.log(this);
+    }
+    var oo ={
+        name :'zhang',
+        fn:function (){
+            console.log(this);// 这个this要看好是哪个函数中的this
+            fn();// window  这个是上面的的那个函数  不是它本身的
+        }
+    }
+    oo.fn();
+
+
+
+    //3 自执行函数中的this是window,  在任何位置执行的时候this都是window
+    ;(function (){
+       console.log(this);//window
+    })();
+
+     //  例子
+    var person = {
+        name:'hz',
+        fun : (function(){
+            console.log(this);//window
+        })()
+    }
+    console.log(person.fun);//因为函数没有return   这个是 undefined
+
+
+
+    //4、构造函数中的this是当前实例
+    // 5  call 和apply还有bind都可以强制改变this
+    // 6、 setInterval()   setInterval() 定时器中的this一般是window
+    // 7、回调函数中的this一般也是window（暂时可以先知道）
+    function fn(){
+        console.log(this);
+    }
+    //fn()`
+    var person = {
+        fn:fn,
+        name :'zhang'
+    }
+    person.fn();//this ==>person
+    window.setInterval(person.fn/*这个位置是函数，不能是值*/,1000);//这时候的this是window
+    //setInterval这个本身就是函数
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

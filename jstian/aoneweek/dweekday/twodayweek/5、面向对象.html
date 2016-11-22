@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+<body>
+
+<script>
+    /*
+    *   1、单例模式：对象
+    *                  var hz = {
+    *                             fn ：function（）{}
+    *                             fn1:function(){
+    *                                 this.fn
+    *                             }
+    *                          }
+    *                 用的话是  hz.fn
+    *                         hz.fn1
+    *
+    *             其实就是一个对象，解决命名冲突的问题
+    *             单例模式也叫命名空间 nameSpace
+    *             单例模式属性函数和属性函数之间的调用使用this就可以，这个this就是这个对象
+    *             PS：比较常用的一种开发模式
+    *
+    *
+    *    2、工厂模式：解决批量的问题  本质就是一个函数
+    *               在函数开始的阶段，创建一个对象
+    *               在函数体 中间的代码都是向这个对象添加属性
+    *               在函数结尾return这个对象
+    *
+    *
+    * （重点）3、构造函数模式    理解三个概念 （ 类   实例   对象）
+    *           function 类名字(){}
+    *           ps: 构造函数中的this是当前实例正在new的这个实例
+    *           ps：默认的实例返回动作如果return一个引用数据类型会破坏
+    *
+    *
+    *
+    *
+    * */
+
+    //2 工厂模式
+   function factory(wood,color){
+       var chair = {};
+       chair.cailiao = wood;//材料
+       chair.color = color;
+       chair.fn = function (){};
+       return chair
+   }
+    factory();//执行一次就留下一个 chair   这样就不用创建chair了
+    factory('wood','red');
+    factory('wood','green');
+    var res = factory('plastic','blue');
+
+
+
+
+    //3、构造函数模式 （重点）
+
+    // Number String  Boolean   Object    Array   Date  RegExp...
+     var date = new Date();//实例创建方式
+     var ary = new Array(1,2,3);//==>[1,2,3]实例创建方式    [1,2]是Array的一个实例
+    var ary2 = [1,2,3];//字面量创建方式
+    console.log(ary);
+    /*
+    *  typeof
+    *  instanceof:判断实例是否属于这个类 （true/false）
+    *     [] instanceof Array    -->true
+    *     [1,2] instanceof Array  -->true
+    *
+    *  constructor
+    *   Object.prototype.toString.call()
+    * */
+
+
+    // 自己创建一个Human这个方法
+    function Human(name,weight){//这个Human类就是我自己构造的一个类。构造函数    构造函数和类是同一个。
+        var obj ={}; //当做构造函数执行私有变量不会影响实例
+        this.name=/*'hao'*/name;
+        this.weight = weight;
+       // return []; //如果当作构造函数（类）执行，那么返回一个引用数类型会破坏实例的默认返回动作
+        this.cry = function (){
+            //哭这个方法不是某一个实例自己的私有属性，这个方法应该是整个人类都应该天生自带的一个属性
+            //如何把这样的公共的方法直接添加给全人类Human，让每个实例（孩子）出生就带着的这个方法
+        }
+    }
+    var res1 =Human();//普通函数执行  这里的this是 window  window.name-->'hao'
+    //当做普通函数执行还是当做构造函数执行都会执行函数体内的代码
+    console.log(res1);//undefined
+    new Human();//--》新生一个小孩    这个是自己构造的  这个就是实例
+   // Human instanceof Function --->true
+
+    var res2 = new Human();//构造函数执行 //这个是赋值给当前实例的 res2.name --->'hao'
+    console.log(res2);//  Human{}       typeof res2---》    object
+
+
+    //  res1 ==res2  --->false
+    //  res1.cry == res2.cry  --false
+
+
+    //往这个Human中传参
+    var res3 = new Human('jack','4kg');
+    var res4 = new Human('rose','3.5kg');
+    console.log(res3,res4);//构造函数可以默认返回  Human{name:jack,weight:'4kg'}
+
+   var res5= Human('nihao','11');//undefined  普通函数执行不写return就不会返回值
+    console.log(res5);
+    //如果当作构造函数（类）执行，那么返回一个引用数类型会破坏实例的默认返回动作
+    //当做构造函数执行私有变量不会影响实例
+
+    /*
+    * 函数的三种角色：
+    *        1、普通函数
+    *        2、构造函数或者类
+    *        3、函数本身也是Function的一个实例
+    * */
+
+
+
+    //4、原型
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    function fn(){
+        var num =0;
+        return function (){
+            num++;
+            console.log(num);
+        }
+    }
+    //var f = fn();
+    var obj ={};
+    obj.f =fn();
+    //document.body // typeof document.body  -->'object'
+
+    document.body/*特殊的对象*/.onclck/*特殊的属性*/ = (function (){
+
+    })()
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var num = 10;//window.num =10
+    var obj = {num:3};
+    obj.fn = (function (){//因为没有传参  所以num没有等于的值
+        this.num +=2;
+        num += 2;//undefined +2  -->NaN
+        var num;
+        return function (){
+            this.num +=2;
+            num +=2;
+            console.log(num);
+        }
+    })(obj.num);
+    var fn = obj.fn;
+    fn();
+    obj.fn();
+    console.log(this.num,obj.num);
+
+
+
+</script>
+</body>
+</html>

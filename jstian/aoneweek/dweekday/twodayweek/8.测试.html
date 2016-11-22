@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自己不会的来这边测试一下</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //front engineer 创建一个FE类(实例)
+    function  FE(name,money,computer){
+        this.name = name;
+        this.money = money;
+        this.computer = computer;
+        /*this.writeJs = function (){
+
+         };*/
+    }
+    /*FE.xxx ='nihao';这个是自己添的属性*/
+    // console.dir(FE);//配图 看一下（1）
+
+    var fe1 = new FE('zhang','20k','macAir')
+    var fe2 = new FE('haha','2k','macPro');
+    console.dir(fe1);//FE
+    console.dir(fe2);//FE     fe1 == fe2  -->  false  //配图2
+
+    FE.prototype.writeJs = function (){
+        console.log('writeJS');
+    }
+
+    fe2.writesJs = function (){}//直接添加到fe2这个实例上的私有属性
+    //fe2/*.__proto__*/.writeJs === FE.prototype.writeJs;   -->true //实例的__proto__属性是可以
+    //fe1.__proto__.writeJs === FE.prototype.writeJs;   -->true
+
+</script>
