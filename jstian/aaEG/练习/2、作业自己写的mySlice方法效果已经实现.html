@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>mySlice1124重新考虑因为不太对</title>
+</head>
+<body>
+<script>
+
+    /*
+    * slice()的用法：
+    *     slice();不传参数的时候相当于从0到数组的最后  克隆
+    *     slice(0);若是传参数为0的时候 也是克隆
+    *     slice(n);传参数为n的时候   从索引n到最后
+    *
+    *     slice(n,m);若是传两个参数的时候，就是从索引n开始复制索引m个不包括m
+    * */
+
+
+    Array.prototype.mySlice = function (n,m){
+        console.log(this);
+        var ary = [];
+        console.log(n);
+        for(var i=0;i<this.length;i++){
+
+            if( (Number(n)===0 || n === undefined) && (m===undefined) ){
+
+                for(var k= 0;k<this.length;k++){
+                    ary[ary.length]=this[k];//等号后面的是所要查找的（this）那个数组的值
+                }
+               return ary;
+            }
+
+            if( ((n!==undefined) && (n!==0))|| (m!==undefined)){
+                if(n>m){
+                    var temp =n;
+                    n = m;
+                    m = temp;
+                }
+                for(var j=n;j<m;j++){
+                    ary[ary.length] = this[j];//一定要记得这个里面的是this数组的值
+                }
+            }
+            return ary;
+        }
+    }
+    var ary1 = [0,1,2,3,4,5,6];
+   var res= ary1.mySlice(1,5);
+   console.log(res);
+
+
+
+
+
+
+
+    //////老师写的   值得学习哈
+    Array.prototype.mySlice = function mySlice(n, m) {
+        var ary = [];
+        n = n || 0;//n不传值的话
+        m = m || this.length;//m不传值的话
+        n < 0 ? n = this.length + Math.ceil(n) :n= Math.floor(n);//n为负数或者n为正数
+        m < 0 ? m = this.length + m : null;//m为负数
+        m > this.length ? m = this.length : null;//m超过数组长度
+        n < 0 ||isNaN(n)? n = 0 : null;//n为负数且超过数组长度或者n不是有效数字
+        if (m < n) {
+            return ary;
+        }
+        else {
+            for (var i = n; i < m; i++) {
+                ary[ary.length] = this[i];
+            }
+            return ary;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //  下面的这个是自己分析的时候想到的  上面的是我最终的结果。但是感觉上面写的这个不是特别简洁的 到时候看看老师的就知道自己东西的那部分不简洁了。反正是效果出来了。
+
+
+    /*Array.prototype.mySlice = function (n,m){
+        console.log(this);
+        var ary = [];
+        console.log(n);
+        for(var i=0;i<this.length;i++){
+
+            if( (Number(n)===0 || n === undefined) && (m===undefined) ){
+
+                for(var k= 0;k<this.length;k++){
+                    ary[ary.length]=this[k];//等号后面的是所要查找的（this）那个数组的值
+                }
+                return ary;
+            }
+
+            if( ((n!==undefined) && (n!==0))|| (m!==undefined)){
+                if(n>m){
+                    var temp =n;
+                    n = m;
+                    m = temp;
+                }
+                for(var j=n;j<m;j++){
+                    ary[ary.length] = this[j];//一定要记得这个里面的是this数组的值
+                }
+            }
+            return ary;
+
+
+
+
+        }
+        /!*  if( (Number(n)===0 || n === undefined) && (m===undefined) ){
+         for(var i= 0;i<this.length;i++){
+         ary[ary.length]=ary[i];//这个地方的等号后面的值是不正确的所以当时就会出错 应该是this[i]
+         }
+        return ary;
+         }*!/
+
+
+
+        /!* console.log(n,m);
+         if(Number(n)!==NaN || Number(m)!==NaN){
+         if(n>m){
+         var temp =n;
+         n = m;
+         m = temp;
+         }
+         for(var j=n;j<m;j++){
+         ary[ary.length] = ary[j]//这个地方的等号后面的值是不正确的所以当时就会出错 应该是this[j];
+         }
+         }
+         return ary;*!/
+    }
+    var ary1 = [0,1,2,3,4,5,6];
+    var res= ary1.mySlice(1,5);
+    console.log(res);
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

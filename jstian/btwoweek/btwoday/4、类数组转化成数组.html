@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>类数组转化成数组</title>
+    <style>
+        html,body,ul,li{
+            margin:0;
+            padding:0
+        }
+        ul{
+            list-style:none
+        }
+        #newsList{
+            width:300px;
+            margin: 30px auto;
+            border:3px solid #ccc;
+
+        }
+        #newsList li{
+            height:30px;
+            line-height: 30px;
+            background:lightblue;
+            margin-bottom:2px;
+            text-indent: 2em;/*文字缩进2像素*/
+            -webkit-user-select: none;
+            cursor:pointer;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <ul id="newsList">
+        <li>1</li>
+        <li>4</li>
+        <li>3</li>
+        <li>2</li>
+    </ul>
+<script>
+    /*
+    *   排序页面中的li：
+    *        1、先获取到lis这个集合里面包含着所有的Li，DOM方法
+    *        2、把Lis从类数组转化为数组   listToArray
+    *        3、只要是数组就可以使用sort方法进行排序，a.innerHTML  LocaleCompare
+    *        4、dom映射关系还存在，那么把排序之后的数组重新添加到页面中（更换位置）
+    *        5、注意利用文档碎片处理多次回流问题
+    * */
+
+
+
+
+
+
+    var newsList = document.getElementById('newsList');
+    var lis =  newsList.getElementsByTagName('li');
+    console.log(lis);//有索引和length属性的就可以看做是类数组
+    var lisAry = listToArray(lis);
+    console.log(lisAry);
+
+
+
+    lisAry.sort(function (a,b){
+        //a，b 都是li
+        return a.innerHTML - b.innerHTML;//'1' '2'
+    });
+    console.dir(lisAry);
+    //把排好序的lisAry再添加到页面中
+   var frg =document.createDocumentFragment();
+    for(var i=0;i<lisAry.length;i++){
+        frg.appendChild(lisAry[i]);
+    }
+    newsList.appendChild(frg);
+    frg = null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function listToArray(likeAry){
+        try{
+            //throw new Error('这个哟')//主动扔出一个错误
+          return  Array.prototype.slice.call(likeAry,0);//这句话就能直接变成数组了但是不兼容 先尝试这个方法 若是成功就用这个 不成功就用catch
+        }catch(e){
+            //console.log(e.message)//捕获一个错误
+            var lisAry = [];
+            for(var i=0;i<likeAry.length;i++){
+                lisAry.push(likeAry[i])
+            }
+            return lisAry;
+        }
+    }
+    /*
+    * try catch 是js中常用的一种容错处理方式：
+    *         try{
+    *            先尝试在try中的代码，如果这里的代码报错 那么就执行catch里的代码
+    *         }catch(e){
+    *            这个e是一个对象，其中e.message保存这上面try代码中报的错误
+    *         }
+    *
+    *          throw new Error('这个哟')//主动扔出一个错误
+    *
+    *          console.log(e.message)//捕获一个错误
+    *
+    * */
+
+
+
+
+
+   /*
+    var lisAry = [];
+    for(var i=0;i<lis.length;i++){
+        lisAry.push(lis[i])
+    }
+    return lisAry;
+*/
+
+
+  /*  Array.prototype.slice = function(){
+        //this slice 方法中的this就是你要赋值的那个数组
+    }
+    [1,2].slice();//[1,2]
+    */
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

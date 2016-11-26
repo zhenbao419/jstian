@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格排序练习</title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+        }
+        .tabBox{
+            margin:30px auto;
+            width:300px;
+            border:1px solid black;
+            background:#ccc;
+            padding:10px;
+        }
+        thead{
+            width:300px;
+            height:30px;
+            line-height: 30px;
+            background:lightcoral;
+            color:darkblue;
+            cursor:pointer;
+        }
+        thead tr,tbody td{
+            width:55px;
+            height:30px;
+            line-height:30px;
+            text-align: center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div id="tabBox" class="tabBox">
+        <table class="tab" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                   <th >姓名</th>
+                   <th>性别</th>
+                   <th class="cursor">年龄</th>
+                   <th>身高</th>
+                   <th>体重</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr>
+                     <td>哈哈</td>
+                     <td>女</td>
+                     <td>100</td>
+                     <td>200</td>
+                     <td>300</td>
+                 </tr>
+                 <tr>
+                     <td>嘻嘻</td>
+                     <td>男</td>
+                     <td>123</td>
+                     <td>321</td>
+                     <td>231</td>
+                 </tr>
+                 <tr>
+                     <td>好好</td>
+                     <td>女</td>
+                     <td>456</td>
+                     <td>546</td>
+                     <td>564</td>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+    var tabBox = document.getElementById('tabBox');
+    var table = tabBox.getElementsByTagName('table')[0];
+    var thead = table.tHead;
+    var theadRow = thead.rows[0];
+    var theadCells = theadRow.cells;
+    var tbody = table.tBodies[0];
+    var tbodyRows = tbody.rows;
+
+    //获取数据
+    function getData(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('get','data.txt',false);
+        xhr.onreadystatechange = function (){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                data = JSON.parse(xhr.responseText);
+               // console.log(xhr.responseText);//这个是那个表格
+
+            }
+        }
+        xhr.send(null);
+    }
+    getData();
+    console.log(data);//这个是个对象
+
+
+   /*
+   *   var xhr = new XMLHttpRequest();
+   *   xhr.open('get','data.txt',false);
+   *   xhr.onreadystatechange = function (){
+   *      if(xhr.readyState == 4 && xhr.status ==200){
+   *          xhr.responseText;
+   *      }
+   *   }
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * */
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

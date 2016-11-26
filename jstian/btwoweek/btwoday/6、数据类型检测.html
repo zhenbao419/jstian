@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数据类型检测</title>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script>
+    /*
+    *    1、typeof   --> 'number'  'string' 'boolean'  'object'  'undefined' 'function'
+    *         typeof不能清晰的判断引用数据类型
+    *
+    *    2、instanceof --> true false   用来判断一个实例是否属于一个类
+    *        不能很好的判断基本数据类型
+    *         [] instanceof  Object  -->true
+    *
+    *
+    *    3. constructor --> 直接打印自己是哪个类的实例
+     *          这个属性是可以被修改的
+     *          Human.prototype={}
+     *          h1.constructor; -->function Object(){}
+    *           为了避免这个情况出现 就做了下面的代码
+     *           Human.prototype.constructor =Human;
+     *
+     *    4. Object.prototype.toString.call(你要检测的数据)
+     *            返回值： '[object 检测数据类型的所属类]'
+     *               eg   [] ==>'[object Array]'
+     *               eg   {} ==>'[object Object]'
+     *               eg   new Date ==>'[object Date]'
+     *               eg   /\s/ ==>'[object RegExp]'
+     *               eg   div  ==>'[object HTMLDiv]'
+     *
+     *               Object原型中toString方法中的this一定是调用toString的实例
+     *               任何一个引用数据类型都可以调用此方法
+     *               [1,2].toString() ==>"1,2"
+     *
+     *               new Date().toString();==>""
+     *               ({}).toString()  -->"[object Object]"
+     *               /^/
+    *
+    *
+    *
+    *      for in 可以遍历出原型上的自定义属性
+    *      for( var key in h1){
+    *            console.log(key) // x  y  eat
+    *      }
+    *
+    *      h1私有的是x y  共有的上面有 eat 用下面的判断出来的key是
+    *      if（h1.hasOwnProperty(key)）{
+    *            console.log（key）// x y
+    *      }
+    *
+    *
+    *
+    *
+    *    // 如何判断一个引用数据类型是不是{}
+    *          var obj = {}
+    *        if(Object.prototype.toString.call() === '[object Object]'){
+    *            alert('是花括号')
+    *        }
+    *
+    *         var obj ={};
+    *         obj = obj || []   这个是为了让执行.toString()的时候不会报错的
+           if(obj.toString() == '[object Object]'){
+                         alert('是一个对象')
+                           }
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+   /* var  ary =[];
+    [] instanceof  Array  -->true;
+    ary instanceof  Array  -->true;
+    ary instanceof  Object  -->true;
+
+    var num = new Number(5)//
+    num instanceof  Number --->true
+    5 instanceof  Number --->fasle   // 因为5 是基本数数类型不能这样
+
+
+
+
+        //
+            [].constructor;//function Array(){}
+
+    function Human(){}
+    var h1 = new Human();
+    h1.constructor; //function Human(){}
+
+    Human.prototype;
+    h1.constructor; //function Object(){}
+*/
+
+
+</script>

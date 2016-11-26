@@ -1,0 +1,32 @@
+1. JSON ==> 数据格式   --》前后端交互一种数据格式
+2、 和我们js中普通对象的区别
+          1）属性名字
+           2）  属性值如果是字符串
+3、window.JSON
+             'JSON' in window  // ie7- 是false
+             function jsonParse( jsonStr ){
+                  return
+             }
+
+4、JSON.parse()   JSON.stringify()  eval
+5 DOM映射 回流 重绘  如何引起
+6 文档碎片 document.createDocumentFragment()
+7.数据获取到之后 添加到页面中
+   1）innerHTML  影响已经存在的元素
+   2）appendChild insertBefore 引起多次回流
+
+8、sort(function (a,b){ return a-b})
+      1) a,b都是什么
+      2）return的值的作用？
+
+9 按照姓名如何排序  'a'.localeCompare('b') --> -1  b大于a的ASCII码
+10 类数组转化成数组
+11 try catch{ e.message}
+12 在数组的原型上拓展过了一个unique去重方法
+
+  作业  slice如何自己实现
+
+  明天：表格排序  ajax
+  周末：第二天正则表达式   周六晚上补课：继承
+
+

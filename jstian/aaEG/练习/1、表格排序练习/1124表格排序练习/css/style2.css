@@ -1,0 +1,35 @@
+html,body,table,thead,tbody,th,tr,td{
+    margin:0;
+    padding:0;
+    font-family: "microsoft yahei";
+}
+.tab{
+    margin: 30px auto;
+    width:1000px;
+    border:3px solid red;
+    padding:3px;
+}
+.tab thead th,.tab tbody td{
+    -webkit-user-select: none;
+    width:200px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+
+}
+.tab thead th{
+    background: lemonchiffon;
+    color: darkblue;
+}
+.tab tbody td{
+    color:yellowgreen;
+}
+.c0{
+    background:lavenderblush;
+}
+.c1{
+    background:lightgreen;
+}
+.cursor{
+    cursor:pointer;
+}

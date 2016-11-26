@@ -1,0 +1,7 @@
+[
+    {"country":"啊国","capital":"北京","population":14,"GDP":10,"develop":0},
+    {"country":"不哈","capital":"今天","population":3,"GDP":3,"develop":1},
+    {"country":"吃嘻","capital":"天气","population":4,"GDP":19,"develop":1},
+    {"country":"的嘎","capital":"很好","population":1,"GDP":7,"develop":0},
+    {"country":"额好","capital":"非常好","population":6,"GDP":30,"develop":1}
+]

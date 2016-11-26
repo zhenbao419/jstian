@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数组原型拓展</title>
+</head>
+<body>
+<script>
+   //数组去重 直接放到原型上就可以直接调用
+    Array.prototype
+
+   //双循环去重(这样数据里面可以放对象 这样不会报错  )
+    var ary = [1,3,2,3,2,1];
+   for(var i=0;i<ary.length-1;i++){//这个是拿出多少次比较  最后一个就不用再比了因为之前比较过了
+        for(var j=i+1;j<ary.length;j++){
+            if(ary[i]===ary[j]){
+                ary.splice(j,1);
+                j--;
+            }
+        }
+    }
+    console.log(ary);
+
+   ary.quchong
+
+
+    //想让这个去重放到数组的方法上
+   var ary = [1,3,2,3,2,1];
+   var ary1 = [1,3,4,3,1,1];
+
+
+    Array.prototype.unique =function (){
+        for(var i=0;i<this.length-1;i++){
+            for(var j=i+1;j<this.length;j++){
+                if(this[i]===this[j]){
+                    this.splice(j,1);
+                    j--;
+                }
+            }
+        }
+        return this;
+    };
+    ary1.unique();//留下一个数组可以再打点
+    ary1.unique().slice();//留下一个数组可以再打点
+
+    ary.unique();//在unique方法中的this就是要去重的那个数组
+
+   ///////////////////////////////////////////////////////////////////////////
+
+    Array.prototype.mySlice=function (n,m){//slice这个方法都兼容 里面并没有完成 自己把这个写完
+        //这里面的this是外面的ary [1,3,2,3,2,1]
+        if(n>m){
+            var temp = n;
+            n =m;
+            m = temp;
+        }
+        var ary=[];
+        for(var i=n;i<m;i++){//从索引n到索引m
+            ary[ary.length] = this[i];//不用push这个方法  直接这样添加到ary中
+        }
+        return ary;
+
+    };
+   var ary = [1,3,2,3,2,1];
+    ary.slice(1,3);//[3,2]
+    //作业：每个人实现一个slice方法在原型上，要求：原生的slice能做什么，你自己写的  自己注意
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
